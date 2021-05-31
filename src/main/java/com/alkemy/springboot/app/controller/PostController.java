@@ -62,8 +62,8 @@ public class PostController {
         errorService.registerErrorHandling(result, response);
 
         try {
-            postRepository.addPostToUser(user.getId(), post.getId());
             postService.save(post);
+            postRepository.addPostToUser(user.getId(), post.getId());
         }catch (DataAccessException e){
             response.put("message", "Fail to create a new POST");
             response.put("error", e.getMessage().concat(":").concat(e.getMostSpecificCause().getMessage()));
